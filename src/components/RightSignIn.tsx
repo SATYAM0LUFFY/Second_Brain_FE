@@ -75,7 +75,6 @@ export function RightSignIn({ setSignIn} : RightSignInProps) {
             Sign In
           </div>
           
-
           </button>
         
         <span className="mt-1 pt-0 text-center text-black cursor-pointer " onClick={onClickHandler}>Dont Have An Account ? Signup</span>

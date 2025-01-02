@@ -12,7 +12,7 @@ interface RightSignUpProps{
 export const RightSignUp = ({ setSignIn} : RightSignUpProps) => {
 
   const [error , setError] = useState("");
-
+  const [clicked , setClicked] = useState(false);
   const emailRef = useRef<HTMLInputElement>(null);
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -23,7 +23,7 @@ export const RightSignUp = ({ setSignIn} : RightSignUpProps) => {
 
   const  SignUpOnClickHandler = async()=>{
 
-    console.log(`request send`)
+    setClicked(true);
 
       const res = await axios.post(`${backendURL}/api/v1/signup`,{
         userName :usernameRef.current?.value,
@@ -39,7 +39,7 @@ export const RightSignUp = ({ setSignIn} : RightSignUpProps) => {
       else{
         setError(res.data.message)
       }
-
+      setClicked(false);
 
   }
 
@@ -57,7 +57,21 @@ export const RightSignUp = ({ setSignIn} : RightSignUpProps) => {
         <div className="flex flex-col">
         {error && <div className="px-0 mx-0 text-sm text-red-600 w-full text-center flex items-center justify-center ">{error}</div> }
         
-        <button onClick={SignUpOnClickHandler} className="border-2 w-[350px] h-12 rounded-lg text-center text-white  mt-0 bg-[#C75051] self-center font-medium text-lg  hover:w-[400px] hover:h-14 transition-all duration-300 ease-out">Create Account</button>
+        <button onClick={SignUpOnClickHandler} className={`flex justify-center items-center gap-3  border-2 w-[350px] h-12 rounded-lg text-center text-white  mt-5 bg-[#C75051] self-center font-medium text-lg  hover:w-[400px] hover:h-14 transition-all duration-300 ease-out`}> 
+          
+          {clicked && 
+          <div className="animate-spin h-6 w-6">
+          <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+          </svg>
+          </div>}
+
+          <div className={`${clicked && "blur-sm"} items-center`}>
+            Sign Up
+          </div>
+          
+          </button>
+        
         <span className="mt-1 pt-0 text-center text-black cursor-pointer" onClick={onClickHandler}>Already Have An Account? SignIn</span>
         <div className="pt-5 self-center">------------------------------OR------------------------------</div>
         <div className="flex justify-center gap-16 mt-5">
