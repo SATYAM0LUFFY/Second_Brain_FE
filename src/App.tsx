@@ -1,12 +1,12 @@
 import { SignUpInPage } from './pages/signUpInPage'
-import { BrowserRouter,Routes, Route } from 'react-router-dom'
+import { HashRouter,Routes, Route } from 'react-router-dom'
 import { Dashbord } from './pages/Dashbord'
 import { Profile } from './pages/Profile'
 
 function App() {
   return (
     <>
-     <BrowserRouter>
+     <HashRouter>
       <Routes>
         
           <Route path = "/signIn" element ={<SignUpInPage/>}/>
@@ -16,7 +16,7 @@ function App() {
           <Route path ="/profile" element={<Profile/>} />
 
       </Routes>
-     </BrowserRouter>
+     </HashRouter>
     </>
   )
 }
